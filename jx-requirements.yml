@@ -1,19 +1,28 @@
 cluster:
-  clusterName: ""
-  environmentGitOwner: ""
-  project: ""
+  clusterName: jx-aps-consumer
+  environmentGitOwner: cb-kubecd
+  externalDNSSAName: jx-aps-consumer-dn
+  gitKind: github
+  gitName: github
+  gitServer: https://github.com
+  kanikoSAName: jx-aps-consumer-ko
+  namespace: jx
+  project: cb-aps-poc-consumer-jrc
   provider: gke
-  zone: ""
-gitops: true
+  vaultSAName: jx-aps-consumer-vt
+  zone: us-east1-c
 environments:
 - key: dev
 - key: staging
 - key: production
+gitops: true
 ingress:
-  domain: ""
-  externalDNS: false
+  domain: cb-aps-poc-consumer-jrc.jxaas.io
+  domainIssuerURL: https://jx-tenant-service-pr-27.jenkins-x.live
+  externalDNS: true
+  namespaceSubDomain: -jx.
   tls:
-    email: "jrawlings@cloudbees.com"
+    email: jrawlings@cloudbees.com
     enabled: true
     production: false
 kaniko: true
@@ -28,4 +37,8 @@ storage:
   repository:
     enabled: false
     url: ""
+terraform: true
+versionStream:
+  ref: v1.0.43
+  url: https://github.com/jenkins-x/jenkins-x-versions.git
 webhook: prow
